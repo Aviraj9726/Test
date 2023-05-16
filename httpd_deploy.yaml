@@ -11,7 +11,7 @@ spec:
  template:
    metadata:
      name: httpd-deploy
-     label:
+     labels:
       name: app
    spec:
      containers:
