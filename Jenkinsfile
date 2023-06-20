@@ -10,8 +10,26 @@ pipeline {
         git 'https://github.com/Aviraj9726/Test.git'
       }
     }
-   
-  stage('Deploying React.js container to Kubernetes') {
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+    stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhub-credentials'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
+        }
+      }
+    }
+    stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
           kubernetesDeploy(configs: "httpd_deploy.yaml", "httpd_svc.yaml")
