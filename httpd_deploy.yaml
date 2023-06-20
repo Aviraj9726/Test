@@ -16,7 +16,7 @@ spec:
    spec:
      containers:
       - name: httpd
-        image: aviraj3109/custom-httpd
+        image: aviraj3109/custom-httpd:v2
         ports:
          - containerPort: 80
   
