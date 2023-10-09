@@ -4,7 +4,7 @@ metadata:
   name: nginx
 spec:
   containers:
-  - name: nginx2
+  - name: nginx3
     image: nginx:1.16
     ports:
-    - containerPort: 80
+    - containerPort: 8080
